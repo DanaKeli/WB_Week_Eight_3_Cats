@@ -12,25 +12,36 @@ import kotlinx.serialization.json.Json
 
 interface CatRepository {
 
-    suspend fun getCat(): List<Cat>
+    suspend fun getCatFromApi(): List<Cat>
+
+    suspend fun getCatFromDB(): List<Cat>
+
+    suspend fun addCatsToDB()
 }
 
 
 class CatRepositoryImp : CatRepository {
 
     companion object {
-        const val BASE_URL = "https://api.thecatapi.com/v1/images/search?limit=1"
+        const val BASE_URL = "https://api.thecatapi.com/v1/images/search?limit=50"
     }
 
     private val client = HttpClient(CIO)
     private val json = Json { ignoreUnknownKeys = true }
     private var result: MutableList<Cat> = mutableListOf()
 
-    override suspend fun getCat(): List<Cat> = withContext(Dispatchers.IO) {
+    override suspend fun getCatFromApi(): List<Cat> = withContext(Dispatchers.IO) {
         val response: HttpResponse = client.get(BASE_URL)
 
         result = json.decodeFromString(response.body())
-        Log.i("dana", "Repo >>> result 1 ${result}")
         result
+    }
+
+    override suspend fun getCatFromDB(): List<Cat> {
+        return listOf()
+    }
+
+    override suspend fun addCatsToDB() {
+
     }
 }

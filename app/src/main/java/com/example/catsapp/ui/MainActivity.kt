@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setImage() {
         CoroutineScope(Job()).launch {
-            binding.ivCat.setImageURI(vm.getCat().url)
+            binding.ivCat.setImageURI(vm.getCatFromApi().url)
         }
     }
 }

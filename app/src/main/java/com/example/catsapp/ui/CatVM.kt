@@ -11,7 +11,7 @@ class CatVM : ViewModel() {
     private var favoriteCats: MutableList<Cat> = mutableListOf()
 
     suspend fun getCat(): Cat {
-        currentCat = repository.getCat()[0]
+        currentCat = repository.getCatFromApi()[(0..49).random()]
         return currentCat
     }
 
