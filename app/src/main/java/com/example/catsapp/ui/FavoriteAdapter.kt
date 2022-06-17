@@ -4,11 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.catsapp.data.Cat
+import com.example.catsapp.data.FavoriteCat
 import com.example.catsapp.databinding.FavoriteItemBinding
 import com.facebook.drawee.backends.pipeline.Fresco
 
-class FavoriteAdapter(private val cats: List<Cat>, private val context: Context) :
+class FavoriteAdapter(private val cats: List<FavoriteCat>, private val context: Context?) :
     RecyclerView.Adapter<FavoriteVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteVH {
@@ -26,7 +26,7 @@ class FavoriteAdapter(private val cats: List<Cat>, private val context: Context)
 }
 
 class FavoriteVH(private val binding: FavoriteItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: Cat) {
+    fun bind(item: FavoriteCat) {
         binding.ivSmallCat.setImageURI(item.url)
     }
 }
