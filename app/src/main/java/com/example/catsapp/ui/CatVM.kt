@@ -58,6 +58,7 @@ class CatVM(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    suspend fun getFavorite(): List<FavoriteCat> = repository.getFavorite()
-
+    suspend fun getFavorite(): List<FavoriteCat> {
+        return repository.getFavorite()
+    }
 }

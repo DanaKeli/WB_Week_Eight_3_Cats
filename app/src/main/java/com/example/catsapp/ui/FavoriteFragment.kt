@@ -1,7 +1,6 @@
 package com.example.catsapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.catsapp.data.FavoriteCat
 import com.example.catsapp.databinding.FragmentFavoriteBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +20,6 @@ class FavoriteFragment : Fragment() {
     private lateinit var fm: FragmentManager
     private lateinit var adapter: FavoriteAdapter
     private lateinit var vm: CatVM
-    private var favoriteList: List<FavoriteCat> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,17 +28,15 @@ class FavoriteFragment : Fragment() {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         vm = ViewModelProvider(requireActivity())[CatVM::class.java]
         fm = requireActivity().supportFragmentManager
+        initView()
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun initView() {
         CoroutineScope(Dispatchers.IO).launch {
-            favoriteList = vm.getFavorite()
-            adapter = FavoriteAdapter(favoriteList, context)
-            Log.i("dana", "FavList 1 >> $favoriteList")
+            adapter = FavoriteAdapter(vm.getFavorite(), context)
+            binding.rvFavorite.layoutManager = GridLayoutManager(context, 3)
+            binding.rvFavorite.adapter = adapter
         }
-        binding.rvFavorite.layoutManager = GridLayoutManager(context, 3)
-        binding.rvFavorite.adapter = adapter
     }
 }
