@@ -7,6 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.catsapp.R
 import com.example.catsapp.databinding.FragmentCatBinding
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -18,7 +23,6 @@ class CatFragment : Fragment() {
 
     private var _binding: FragmentCatBinding? = null
     private val binding get() = _binding!!
-    private lateinit var fm: FragmentManager
     private lateinit var vm: CatVM
 
     override fun onCreateView(
@@ -28,15 +32,21 @@ class CatFragment : Fragment() {
         Fresco.initialize(context)
         _binding = FragmentCatBinding.inflate(inflater, container, false)
         vm = ViewModelProvider(requireActivity())[CatVM::class.java]
-        fm = requireActivity().supportFragmentManager
-
-
-        initViews()
+        setImage()
         return binding.root
     }
 
-    private fun initViews() {
-        setImage()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initListeners()
+    }
+
+    private fun initListeners() {
+        val navHostFragment = requireActivity()
+            .supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val nc = navHostFragment.navController
+
         binding.apply {
             btnLike.setOnClickListener {
                 vm.onLike()
@@ -46,10 +56,10 @@ class CatFragment : Fragment() {
                 setImage()
             }
             btnFavorite.setOnClickListener {
-                fm.beginTransaction()
-                    .addToBackStack("")
-                    .replace(R.id.main_container, FavoriteFragment())
-                    .commit()
+                nc.navigate(R.id.action_catFragment_to_favoriteFragment)
+            }
+            btnInfo.setOnClickListener {
+                nc.navigate(R.id.action_catFragment_to_infoFragment)
             }
         }
     }

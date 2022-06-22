@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">CatsApp</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about">О приложении</string>
+    <string name="name">Developer: Dana Keli</string>
+    <string name="date">Date of creation: 30.05.2022</string>
+    <string name="link">https://github.com/DanaKeli/WB_Week_Eight_3_Cats</string>
 </resources>

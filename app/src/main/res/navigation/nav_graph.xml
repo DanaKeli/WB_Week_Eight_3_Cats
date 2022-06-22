@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/catFragment">
+
+    <fragment
+        android:id="@+id/catFragment"
+        android:name="com.example.catsapp.ui.CatFragment"
+        android:label="Cat"
+        tools:layout="@layout/fragment_cat">
+        <action
+            android:id="@+id/action_catFragment_to_infoFragment"
+            app:destination="@id/infoFragment"
+            app:popUpTo="@layout/fragment_cat" />
+        <action
+            android:id="@+id/action_catFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment"
+            app:popUpTo="@layout/fragment_cat" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.catsapp.ui.FavoriteFragment"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.catsapp.ui.InfoFragment"
+        android:label="Info"
+        tools:layout="@layout/fragment_info" />
+
+</navigation>

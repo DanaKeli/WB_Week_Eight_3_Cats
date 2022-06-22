@@ -11,7 +11,20 @@
         android:id="@+id/ivCat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:src="@android:drawable/ic_menu_info_details"
         fresco:actualImageScaleType="centerCrop" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/info"
+        app:fabCustomSize="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxImageSize="40dp" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,12 +32,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="25dp"
         android:src="@drawable/wish_list"
-        app:fabCustomSize="100dp"
+        app:fabCustomSize="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:maxImageSize="60dp" />
+        app:maxImageSize="40dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnLike"
